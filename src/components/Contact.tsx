@@ -25,13 +25,13 @@ export const Contact = () => {
                                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
                                     <Mail className="w-6 h-6" />
                                 </div>
-                                <span className="font-bold">hello@venturexp.com</span>
+                                <span className="font-bold">contato@venturexp.pro</span>
                             </div>
                             <div className="flex items-center gap-4 text-white">
                                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
                                     <MessageSquare className="w-6 h-6" />
                                 </div>
-                                <span className="font-bold">+55 (11) 99999-9999</span>
+                                <span className="font-bold">19 99900-5677</span>
                             </div>
                         </div>
                     </motion.div>
