@@ -113,20 +113,22 @@ export const InteractiveBackground = () => {
 
         const initParticles = () => {
             particles = [];
-            const particleCount = 400; // Adjusted density so it's not too cluttered
+            // Reduced particle count for better performance on scrolling
+            const particleCount = window.innerWidth < 768 ? 60 : 120;
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
         };
 
         const handleMouseMove = (e: MouseEvent) => {
+            if (!canvas) return;
             const rect = canvas.getBoundingClientRect();
             mouse.x = e.clientX - rect.left;
             mouse.y = e.clientY - rect.top;
 
             // Calculate rotation based on mouse position relative to center
-            targetRotationY = (mouse.x - canvas.width / 2) * 0.0005;
-            targetRotationX = (mouse.y - canvas.height / 2) * 0.0005;
+            targetRotationY = (mouse.x - canvas.width / 2) * 0.0002; // Slower rotation
+            targetRotationX = (mouse.y - canvas.height / 2) * 0.0002;
         };
 
         let currentRotationX = 0;
@@ -137,11 +139,11 @@ export const InteractiveBackground = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Smooth rotation interpolation
-            currentRotationX += (targetRotationX - currentRotationX) * 0.05;
-            currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+            currentRotationX += (targetRotationX - currentRotationX) * 0.02; // Slower easing
+            currentRotationY += (targetRotationY - currentRotationY) * 0.02;
 
             // Add a slight constant drift so it's never completely static
-            currentRotationY += 0.001;
+            currentRotationY += 0.0005;
 
             particles.forEach((particle) => {
                 particle.draw(currentRotationX, currentRotationY);
